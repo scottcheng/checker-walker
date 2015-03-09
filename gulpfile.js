@@ -39,6 +39,14 @@ gulp.task('jade', function() {
     .pipe(gulp.dest(paths.dist));
 });
 
+gulp.task('copy', function() {
+  gulp.src([
+      paths.app + 'styles/*.css',
+      paths.app + 'styles/fonts/*.{eot,svg,ttf,woff}',
+    ], { base: paths.app })
+    .pipe(gulp.dest(paths.dist));
+});
+
 gulp.task('webserver', function() {
   gulp.src(paths.dist)
     .pipe(webserver({
@@ -47,7 +55,7 @@ gulp.task('webserver', function() {
     }));
 });
 
-gulp.task('serve', ['scripts', 'styles', 'jade', 'webserver'], function() {
+gulp.task('serve', ['scripts', 'styles', 'jade', 'copy', 'webserver'], function() {
   gulp.watch(paths.app + 'index.jade', ['jade']);
   gulp.watch(paths.app + 'styles/**/*.styl', ['styles']);
   gulp.watch(paths.app + 'scripts/**/*.js', ['scripts']);
