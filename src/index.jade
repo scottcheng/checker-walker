@@ -9,6 +9,13 @@ html(lang='en')
     link(rel='stylesheet' href='/styles/index.css')
 
   body
-    | Hola
+    #sidebar.section
+      #control
+        .btn#play-pause-btn Start
+        .btn#reset-btn Reset
+        //- TODO: Board size input
+
+    #board-section.section
+      #board
 
     script(src='/scripts/index.js')

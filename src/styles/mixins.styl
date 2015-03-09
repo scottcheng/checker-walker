@@ -1,0 +1,15 @@
+btn(color)
+  padding 5px 10px
+  border-radius 2px
+  text-align center
+  user-select none
+  cursor pointer
+  background color
+  color #fff
+  box-shadow 0 2px darken(color, 15%)
+  transition background .25s
+  &:hover
+    background lighten(color, 5%)
+  &:active
+    box-shadow none
+    transform translateY(2px)
