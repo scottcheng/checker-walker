@@ -44,6 +44,7 @@ class Control {
     if (this.isOff) { return; }
 
     this.playing = false;
+    window.clearTimeout(this.tickTimeout);
     this._render();
   }
 
@@ -59,7 +60,7 @@ class Control {
     const result = board.walk();
 
     if (result !== 'off') {
-      window.setTimeout(this._tick.bind(this), INTERVAL);
+      this.tickTimeout = window.setTimeout(this._tick.bind(this), INTERVAL);
     }
     else {
       this.isOff = true;
