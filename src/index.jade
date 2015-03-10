@@ -21,9 +21,9 @@ html(lang='en')
             .icon-replay
         .board-size
           .icon-grid
-          input(type='text' id='board-size-rows' value='8')
+          input(type='text' id='board-size-rows' maxlength='2')
           span.icon-times
-          input(type='text' id='board-size-columns' value='5')
+          input(type='text' id='board-size-columns' maxlength='2')
 
     #board-section.section
       .msg.loop The checker will stay on the board... forever.
