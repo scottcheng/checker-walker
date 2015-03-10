@@ -12,13 +12,18 @@ html(lang='en')
   body
     #sidebar.section
       #control
-        .btn#play-pause-btn
-          .icons
-            .icon-play
-            .icon-pause
-        .btn#reset-btn
-          .icon-replay
-        //- TODO: Board size input
+        .btns
+          .btn#play-pause-btn
+            .icons
+              .icon-play
+              .icon-pause
+          .btn#reset-btn
+            .icon-replay
+        .board-size
+          .icon-grid
+          input(type='text' id='board-size-rows' value='8')
+          span.icon-times
+          input(type='text' id='board-size-columns' value='5')
 
     #board-section.section
       .msg.loop The checker will stay on the board... forever.

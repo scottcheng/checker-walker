@@ -1,9 +1,11 @@
 #control
   btn-height = 50px
+  icon-size = 32px
   .btn
+    margin 0 auto
     width 120px
     height btn-height
-    font-size 24px
+    font-size icon-size
     line-height btn-height
     &:nth-child(n+2)
       margin-top 20px
@@ -19,3 +21,32 @@
       opacity .5
   #reset-btn
     btn(red)
+
+  .board-size
+    margin-top 40px
+    border-top 1px solid gray-light
+    padding-top 40px
+    width 160px
+    text-align center
+
+  .icon-grid
+    margin-bottom 20px
+    font-size icon-size
+  .icon-times
+    color gray-light
+    margin 0 5px
+    vertical-align middle
+  input
+    width 40px
+    background transparent
+    outline none
+    appearance none
+    border none
+    border-bottom 1px solid gray-light
+    text-align center
+    vertical-align middle
+    font-size 24px
+    color inherit
+    transition background .25s
+    &:focus
+      background rgba(yellow, .25)

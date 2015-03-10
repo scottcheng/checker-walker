@@ -35,7 +35,7 @@ gulp.task('styles', function() {
 gulp.task('jade', function() {
   gulp.src(paths.app + 'index.jade')
     .pipe(plumber())
-    .pipe(jade({ pretty: true }))
+    .pipe(jade())
     .pipe(gulp.dest(paths.dist));
 });
 
