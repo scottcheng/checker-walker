@@ -1,11 +1,19 @@
 import d3 from 'd3';
+import { Howl } from 'howler';
 
 import view from './boardView';
 
 class Board {
+  constructor() {
+    this.offSound = new Howl({ urls: ['sounds/disconnect.wav'] });
+    this.loopSound = new Howl({ urls: ['sounds/success.wav'] });
+  }
+
   initiate({ rows, columns }) {
     this.rows = rows;
     this.columns = columns;
+
+    this.determined = false;
 
     this.position = {
       x: Math.floor(Math.random() * columns),
@@ -43,12 +51,20 @@ class Board {
 
     if (this._isOff(this.position)) {
       view.finish('off');
+      if (!this.determined) {
+        this.offSound.play();
+        this.determined = true;
+      }
       return 'off';
     }
     else {
       const arrow = this._getArrow(this.position);
       if (arrow.visited) {
         view.finish('loop');
+        if (!this.determined) {
+          this.loopSound.play();
+          this.determined = true;
+        }
         return 'loop';
       }
       arrow.visited = true;

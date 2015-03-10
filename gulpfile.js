@@ -43,6 +43,7 @@ gulp.task('copy', function() {
   gulp.src([
       paths.app + 'styles/*.css',
       paths.app + 'styles/fonts/*.{eot,svg,ttf,woff}',
+      paths.app + 'sounds/**/*.{mp3,wav}',
     ], { base: paths.app })
     .pipe(gulp.dest(paths.dist));
 });
