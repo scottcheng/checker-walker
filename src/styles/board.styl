@@ -1,4 +1,6 @@
-#board
+#board-section
+  flex-direction column
+
   #border
     stroke gray-light
     fill none
@@ -6,13 +8,44 @@
     stroke gray-light
 
   .piece
-    fill blue
+    fill lighten(blue, 15%)
   .piece-shadow
-    fill darken(blue, 15%)
-    transform translateY(1px)
+    fill blue
+    transform translateY(2px)
 
   .arrow
     font-family 'icomoon'
     fill gray-lighter
+    transition fill .25s
+    &.visited
+      fill yellow
     &.active
       fill green
+
+  .msg
+    center-align()
+    padding 10px 20px
+    border-radius 2px
+    height 0
+    opacity 0
+    transform translateY(20px)
+    transition height .25s, opacity .25s .25s, transform .25s .25s
+    color #fff
+    &.loop
+      background green
+    &.off
+      background red
+  &.loop
+    .msg.loop
+      height 50px
+      opacity 1
+      transform translateY(0)
+    .arrow.visited
+      fill green
+  &.off
+    .msg.off
+      height 50px
+      opacity 1
+      transform translateY(0)
+    .arrow.visited
+      fill red

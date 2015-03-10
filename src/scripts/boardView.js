@@ -1,10 +1,12 @@
 import d3 from 'd3';
 
-const SQUARE_WIDTH = 60;
-const BOARD_PADDING = 10;
+import { SQUARE_WIDTH } from './constants';
+
+const BOARD_PADDING = SQUARE_WIDTH;
 
 class BoardView {
   initiate({ rows, columns, arrows, position }) {
+    this.container = d3.select('#board-section').classed('finished', false);
     const board = d3.select('#board');
 
     const boardBorder = board
@@ -93,9 +95,12 @@ class BoardView {
   }
 
   moveTo({ x, y, arrows }) {
-    this.piece.attr('transform', `translate(
-      ${(x + .5) * SQUARE_WIDTH + BOARD_PADDING},
-      ${(y + .5) * SQUARE_WIDTH + BOARD_PADDING})`);
+    this.piece
+      .transition()
+      .attr('transform', `translate(
+        ${(x + .5) * SQUARE_WIDTH + BOARD_PADDING},
+        ${(y + .5) * SQUARE_WIDTH + BOARD_PADDING})`);
+
     this.arrowsWrapper
       .selectAll('text')
       .data(arrows.map((d) => {
@@ -104,10 +109,22 @@ class BoardView {
           y: d.y,
           direction: d.direction,
           active: d.x === x && d.y === y,
+          visited: d.visited,
         };
       }))
-      .classed('active', (d) => d.active);
+      .classed({
+        active: (d) => d.active,
+        visited: (d) => d.visited,
+      });
   }
-};
+
+  finish(result) {
+    this.container.classed({
+      finished: true,
+      loop: result === 'loop',
+      off: result === 'off',
+    });
+  }
+}
 
 export default new BoardView;
