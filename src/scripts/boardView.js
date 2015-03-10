@@ -8,6 +8,7 @@ class BoardView {
   initiate({ rows, columns, arrows, position }) {
     this.container = d3.select('#board-section').classed('finished', false);
     const board = d3.select('#board');
+    board.selectAll('*').remove();
 
     const boardBorder = board
       .append('rect')
@@ -91,15 +92,26 @@ class BoardView {
         .attr('x', (d) => (d.x + .7) * SQUARE_WIDTH + BOARD_PADDING)
         .attr('y', (d) => (d.y + .3) * SQUARE_WIDTH + BOARD_PADDING);
 
-    this.moveTo({ x: position.x, y: position.y, arrows });
+    this.moveTo({ x: position.x, y: position.y, arrows }, { initializing: true });
   }
 
-  moveTo({ x, y, arrows }) {
-    this.piece
-      .transition()
-      .attr('transform', `translate(
-        ${(x + .5) * SQUARE_WIDTH + BOARD_PADDING},
-        ${(y + .5) * SQUARE_WIDTH + BOARD_PADDING})`);
+  moveTo({ x, y, arrows }, { initializing } = {}) {
+    const pieceTransform = `translate(
+      ${(x + .5) * SQUARE_WIDTH + BOARD_PADDING},
+      ${(y + .5) * SQUARE_WIDTH + BOARD_PADDING})`;
+    if (initializing) {
+      this.piece
+        .attr('transform', `${pieceTransform} scale(0)`)
+        .transition()
+        .duration(500)
+        .ease(d3.ease('elastic'))
+        .attr('transform', pieceTransform);
+    }
+    else {
+      this.piece
+        .transition()
+        .attr('transform', pieceTransform);
+    }
 
     this.arrowsWrapper
       .selectAll('text')

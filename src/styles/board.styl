@@ -1,6 +1,9 @@
 #board-section
   flex-direction column
 
+  #board
+    margin 20px 0
+
   #border
     stroke gray-light
     fill none
@@ -29,23 +32,26 @@
     height 0
     opacity 0
     transform translateY(20px)
-    transition height .25s, opacity .25s .25s, transform .25s .25s
+    transition height .25s .25s, opacity .25s, transform .25s
     color #fff
     &.loop
       background green
     &.off
       background red
-  &.loop
-    .msg.loop
-      height 50px
-      opacity 1
-      transform translateY(0)
-    .arrow.visited
-      fill green
-  &.off
-    .msg.off
-      height 50px
-      opacity 1
-      transform translateY(0)
-    .arrow.visited
-      fill red
+  &.finished
+    .msg
+      transition height .25s, opacity .25s .25s, transform .25s .25s
+    &.loop
+      .msg.loop
+        height 50px
+        opacity 1
+        transform translateY(0)
+      .arrow.visited
+        fill green
+    &.off
+      .msg.off
+        height 50px
+        opacity 1
+        transform translateY(0)
+      .arrow.visited
+        fill red
