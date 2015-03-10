@@ -1,7 +1,3 @@
-import $ from 'jquery';
-
 import control from './control';
 
-$(() => {
-  control.initiate();
-});
+document.addEventListener('DOMContentLoaded', control.initiate.bind(control));
