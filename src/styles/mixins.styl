@@ -4,7 +4,6 @@ center-align()
   justify-content center
 
 btn(color)
-  padding 5px 10px
   border-radius 2px
   text-align center
   user-select none
@@ -12,6 +11,7 @@ btn(color)
   background color
   color #fff
   box-shadow 0 2px darken(color, 15%)
+  overflow hidden
   transition background .25s
   &:hover
     background lighten(color, 15%)
