@@ -49,20 +49,20 @@ gulp.task('copy', function() {
     .pipe(gulp.dest(paths.dist));
 });
 
-gulp.task('webserver', function() {
+gulp.task('watch', function() {
+  gulp.watch(paths.app + 'index.jade', ['jade']);
+  gulp.watch(paths.app + 'styles/**/*.styl', ['styles']);
+  gulp.watch(paths.app + 'scripts/**/*.js', ['scripts']);
+});
+
+gulp.task('build', ['scripts', 'styles', 'jade', 'copy']);
+
+gulp.task('serve', ['scripts', 'styles', 'jade', 'copy', 'watch'], function() {
   gulp.src(paths.dist)
     .pipe(webserver({
       livereload: true,
       open: true,
     }));
-});
-
-gulp.task('build', ['scripts', 'styles', 'jade', 'copy']);
-
-gulp.task('serve', ['scripts', 'styles', 'jade', 'copy', 'webserver'], function() {
-  gulp.watch(paths.app + 'index.jade', ['jade']);
-  gulp.watch(paths.app + 'styles/**/*.styl', ['styles']);
-  gulp.watch(paths.app + 'scripts/**/*.js', ['scripts']);
 });
 
 gulp.task('default', ['build']);
