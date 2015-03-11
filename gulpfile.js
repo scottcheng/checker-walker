@@ -1,6 +1,6 @@
 var gulp = require('gulp');
 var browserify = require('browserify');
-var babelify = require("babelify");
+var babelify = require('babelify');
 var source = require('vinyl-source-stream');
 var nib = require('nib');
 var stylus = require('gulp-stylus');
