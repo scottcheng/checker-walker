@@ -1,7 +1,7 @@
-var fs = require('fs');
 var gulp = require('gulp');
 var browserify = require('browserify');
 var babelify = require("babelify");
+var source = require('vinyl-source-stream');
 var nib = require('nib');
 var stylus = require('gulp-stylus');
 var jade = require('gulp-jade');
@@ -22,7 +22,8 @@ gulp.task('scripts', function() {
       console.log('Browserify error:', err.message);
       this.emit('end');
     })
-    .pipe(fs.createWriteStream(paths.dist + 'scripts/index.js'));
+    .pipe(source('index.js'))
+    .pipe(gulp.dest(paths.dist + 'scripts'));
 });
 
 gulp.task('styles', function() {
