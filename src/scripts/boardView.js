@@ -27,11 +27,11 @@ class BoardView {
       .attr('id', 'piece');
     piece
       .append('circle')
-      .classed('piece', true)
+      .classed('piece-shadow', true)
       .attr('r', SQUARE_WIDTH / 4);
     piece
       .append('circle')
-      .classed('piece-shadow', true)
+      .classed('piece', true)
       .attr('r', SQUARE_WIDTH / 4);
 
     const boardWidth = columns * SQUARE_WIDTH;
