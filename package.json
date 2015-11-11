@@ -1,5 +1,6 @@
 {
   "name": "checker-walker",
+  "private": true,
   "version": "0.0.1",
   "description": "Checker walker",
   "repository": {
@@ -21,5 +22,6 @@
   "dependencies": {
     "d3": "~3.5.5",
     "howler": "~1.1.25"
-  }
+  },
+  "license": "MIT"
 }
